@@ -2,7 +2,7 @@ class Almacen {
 	int[] productos = new int[0x10];
 	int primero = 0;
 	int stock = 0;
-
+ 
 	public synchronized int coger(String id) {
 		int aux;
 		while (stock == 0) {
