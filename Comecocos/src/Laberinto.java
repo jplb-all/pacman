@@ -64,6 +64,9 @@ public class Laberinto {
 			this.celdasAux[i] = celdas[i].clone();
 		}
 	}
+	public boolean muro (int fil, int col){
+		return (celdasAux[fil][col] == 0);
+	}
 	
 	public boolean punto(int fil, int col){
 		/** retorna true si en [fil][col] hay un punto pequeño*/
