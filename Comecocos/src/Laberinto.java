@@ -24,7 +24,7 @@ public class Laberinto {
 	private static final int PROHIBIDODCHA = 0x0080; // no permite subir a los fantasmas
 	private static final int ZONALENTA = 0x0100; // al pasar por esta zona el fantasma se ralentiza pero el pacman sigue a la misma velocidad
 		
-	private static Laberinto ORIGINAL;
+	public static Laberinto ORIGINAL;
 	
 	private int [][] celdas;
 	private int [][] celdasAux;
