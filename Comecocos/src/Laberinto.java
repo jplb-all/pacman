@@ -37,6 +37,8 @@ public class Laberinto {
 	private Point2D.Double posES; // Posición de entrada/salida de los fantasmas
 	private Point2D.Double [] objetivos; // Objetivos de los fantasmas en modo dispersión
 	
+	private Direccion [] dirIni;
+	
 	private BufferedImage img;
 	
 	public Laberinto(int [][] celdas, String fichero) {
@@ -51,6 +53,7 @@ public class Laberinto {
 		rutasC = new Ruta[4];
 		pIni = new Point2D.Double[5];
 	    objetivos = new Point2D.Double[4];
+	    dirIni = new Direccion [5];
 		try {
 			img = ImageIO.read(Laberinto.class.getResource(fichero));
 		} catch (IOException e) {}
@@ -91,8 +94,12 @@ public class Laberinto {
 		return  (Point2D.Double) posES.clone();
 	}
 	
-	public Point2D.Double getPosicionInicial(NombresPersonaje id) {
+	public Point2D.Double getPosIni(NombresPersonaje id) {
 		return (Point2D.Double) pIni[id.ordinal()].clone();
+	}
+	
+	public Direccion getDirIni(NombresPersonaje id){
+		return dirIni[id.ordinal()];
 	}
 	
 	public Point2D.Double getObjetivo(NombresPersonaje id) {
@@ -160,7 +167,11 @@ public class Laberinto {
 		ORIGINAL.pIni[NombresPersonaje.PINKY.ordinal()] =  new Point2D.Double(276,276);
 		ORIGINAL.pIni[NombresPersonaje.CLYDE.ordinal()] =  new Point2D.Double(319,304);
 		ORIGINAL.pIni[NombresPersonaje.PACMAN.ordinal()] =  new Point2D.Double(275,456);
-		
+		ORIGINAL.dirIni[NombresPersonaje.BLINKY.ordinal()] =  Direccion.IZDA;
+		ORIGINAL.dirIni[NombresPersonaje.INKY.ordinal()] =  Direccion.IZDA;
+		ORIGINAL.dirIni[NombresPersonaje.PINKY.ordinal()] =  Direccion.DERECHA;
+		ORIGINAL.dirIni[NombresPersonaje.CLYDE.ordinal()] =  Direccion.DERECHA;
+		ORIGINAL.dirIni[NombresPersonaje.PACMAN.ordinal()] =  Direccion.IZDA;
 	}
 	
 }
