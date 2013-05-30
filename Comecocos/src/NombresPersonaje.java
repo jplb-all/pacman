@@ -1,4 +1,4 @@
 
 public enum NombresPersonaje {
-	PACMAN, BLINKY, INKY, PINKY, CLYDE
+	BLINKY, INKY, PINKY, CLYDE, PACMAN
 }
