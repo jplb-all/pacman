@@ -18,7 +18,7 @@ public class Laberinto {
 	private static final int PROHIBIDOBAJAR = 0x0020; // no permite subir a los fantasmas
 	private static final int PROHIBIDOIZDA = 0x0040; // no permite subir a los fantasmas
 	private static final int PROHIBIDODCHA = 0x0080; // no permite subir a los fantasmas
-	private static final int ZONALENTA = 0x0020; // al pasar por esta zona el fantasma se ralentiza pero el pacman sigue a la misma velocidad
+	private static final int ZONALENTA = 0x0100; // al pasar por esta zona el fantasma se ralentiza pero el pacman sigue a la misma velocidad
 		
 	private static Laberinto ORIGINAL;
 	
@@ -26,7 +26,7 @@ public class Laberinto {
 	private int [][] celdasAux;
 	
 	private Ruta [] rutasS; // Rutas de salida de cada fantasma de su casa
-	private Ruta [] retasE; // Rutas de entrada de cada fantasma a su casa
+	private Ruta [] rutasE; // Rutas de entrada de cada fantasma a su casa
 	private Ruta [] rutasC; // Rutas de espera de cada fantasma en su casa
 	
 	private Point2D.Double [] pIni; // posiciones iniciales de cada personaje
@@ -45,6 +45,12 @@ public class Laberinto {
 		}
 		this.celdasAux = new int [celdas.length][];
 		reset();
+		rutasS = new Ruta[4];
+		rutasE = new Ruta[4];
+		rutasC = new Ruta[4];
+		pIni = new Point2D.Double[5];
+	    objetivos = new Point2D.Double[4];
+		
 	}
 	
 	public void reset(){
@@ -78,8 +84,8 @@ public class Laberinto {
 		celdasAux[fil][col] &= 0xfff9;
 	}
 	
-	public Point2D.Double getPosicionES(NombresPersonaje id) {
-		
+	public Point2D.Double getPosicionES() {
+		return  posES;
 	}
 	
 	public Point2D.Double getPosicionInicial(NombresPersonaje id) {
@@ -151,6 +157,7 @@ public class Laberinto {
 			/*32*/	{9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9}
 		};
 		ORIGINAL = new Laberinto(celdas);
+		ORIGINAL.posES = new Point2D.Double(275, 228);
 		ORIGINAL.setPosIni(32, 29);
 	}
 	
