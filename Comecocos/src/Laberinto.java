@@ -164,7 +164,7 @@ public class Laberinto {
 					{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			/*32*/	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 		};
-		ORIGINAL = new Laberinto(celdas, "/img/laberinto.png");
+		ORIGINAL = new Laberinto(celdas, "/img/laberinto.png"); 
 		ORIGINAL.posES = new Point2D.Double(275, 228);
 		ORIGINAL.pIni[NombresPersonaje.BLINKY.ordinal()] =  new Point2D.Double(275,228);
 		ORIGINAL.pIni[NombresPersonaje.INKY.ordinal()] =  new Point2D.Double(233,304);
