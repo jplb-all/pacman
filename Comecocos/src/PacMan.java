@@ -14,7 +14,7 @@ public class PacMan extends Personaje{
 	public PacMan(Laberinto l, String fichero) {
 		super(NombresPersonaje.PACMAN, l);
 		try {
-			ImageIO.read(PacMan.class.getResource(fichero));
+			img = ImageIO.read(PacMan.class.getResource(fichero));
 		} catch (IOException e) {}
 	}
 
