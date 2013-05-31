@@ -1,5 +1,6 @@
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -12,10 +13,10 @@ public class Laberinto {
 	VALORES Y SIGNIFICADO:
 	Bits 0-7 contenido celda:
 	*/
-	private static final int PARED = 0;
+	private static final int MURO = 0;
 	private static final int VACIO = 1;
-	private static final int BOLAP = 3;
-	private static final int BOLAG = 5;  // al comer 1 de estas pacman puede comerse a los fantasmas
+	private static final int PUNTO = 3;
+	private static final int PUNTOGRUESO = 5;  // al comer 1 de estas pacman puede comerse a los fantasmas
 	
 	/** Bits 8-31 restricciones */
 	private static final int PROHIBIDOSUBIR = 0x0010; // no permite subir a los fantasmas
@@ -65,17 +66,17 @@ public class Laberinto {
 		}
 	}
 	public boolean muro (int fil, int col){
-		return (celdasAux[fil][col] == 0);
+		return (celdasAux[fil][col] == MURO);
 	}
 	
 	public boolean punto(int fil, int col){
 		/** retorna true si en [fil][col] hay un punto pequeño*/
-		return ((celdasAux[fil][col] & 0x000f) == 2);
+		return ((celdasAux[fil][col] & 0x000f) == PUNTO);
 	}
 	
 	public boolean puntoGrueso(int fil, int col){
 		/**retorna true si en [fil][col] hay un punto grueso*/
-		return ((celdasAux[fil][col] & 0x000f) == 3);
+		return ((celdasAux[fil][col] & 0x000f) == PUNTOGRUESO);
 	}
 	
 	public boolean prohibidoSubir(int fil, int col){
@@ -106,19 +107,19 @@ public class Laberinto {
 	}
 	
 	public Point2D.Double getObjetivo(NombresPersonaje id) {
-		
+		return objetivos[id.ordinal()];
 	}
 	
 	public Ruta getRutaE(NombresPersonaje id) {
-		
+		return rutasE[id.ordinal()];
 	}
 	
 	public Ruta getRutaS(NombresPersonaje id) {
-		
+		return rutasS[id.ordinal()];
 	}
 	
 	public Ruta getRutaC(NombresPersonaje id) {
-		
+		return rutasC[id.ordinal()];
 	}
 	
 	public BufferedImage getImagen(){
@@ -175,6 +176,10 @@ public class Laberinto {
 		ORIGINAL.dirIni[NombresPersonaje.PINKY.ordinal()] =  Direccion.DERECHA;
 		ORIGINAL.dirIni[NombresPersonaje.CLYDE.ordinal()] =  Direccion.DERECHA;
 		ORIGINAL.dirIni[NombresPersonaje.PACMAN.ordinal()] =  Direccion.IZDA;
+		ORIGINAL.objetivos[NombresPersonaje.BLINKY.ordinal()] =  new Point2D.Double(502, -57);
+		ORIGINAL.objetivos[NombresPersonaje.INKY.ordinal()] =  new Point2D.Double(540, 616);
+		ORIGINAL.objetivos[NombresPersonaje.PINKY.ordinal()] =   new Point2D.Double(65, -57);
+		ORIGINAL.objetivos[NombresPersonaje.CLYDE.ordinal()] =   new Point2D.Double(27, 616);
 	}
 	
 }
