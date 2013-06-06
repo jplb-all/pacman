@@ -16,6 +16,7 @@ public class Escenario extends JPanel implements Runnable,ActionListener{
 	boolean iniciado= false;
 	Direccion direccion;
 	public Escenario() {
+		direccion=pacman.getDireccion();
 		setPreferredSize(new Dimension(l.getImagen().getWidth(),l.getImagen().getHeight()));
 		registerKeyboardAction(this, "iniciar",
 				  KeyStroke.getKeyStroke(KeyEvent.VK_I, 0),
