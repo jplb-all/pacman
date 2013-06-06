@@ -24,14 +24,17 @@ public class CtrlJuego {
 		d = pacman.getDireccion();
 	}
 	
+	/*Cambio de direccion*/
 	public void cambiarDireccion (Direccion d){
 		this.d = d;
 	}
 	
-	public Point2D.Double getPosPacman (){
-		return pacman.getPosicion();
+	/*Devolvemos la posicion del PacMan*/
+	public PacMan getPacman (){
+		return pacman;
 	}
 	
+	/*Método para iniciar el juego*/
 	public void inicioJuego(){
 		t = new Thread(){
 			@Override
@@ -43,7 +46,7 @@ public class CtrlJuego {
 					} catch (InterruptedException e) {
 						
 					}
-				}
+				}//Fin de bucle de ejecucion de la partida.
 				
 			}
 		};
