@@ -12,8 +12,8 @@ public class CtrlJuego {
 	boolean iniciado = true;
 	
 	
-	public CtrlJuego (){
-		laberinto = Laberinto.ORIGINAL;
+	public CtrlJuego (Laberinto laberinto){
+		this.laberinto = laberinto;
 
 /***/
 //		blinky = new Fantasma(NombresPersonaje.BLINKY, laberinto);
@@ -51,6 +51,7 @@ public class CtrlJuego {
 				
 			}
 		};
+		t.setPriority(Thread.MAX_PRIORITY);
 		t.start();
 	}
 }

@@ -11,9 +11,12 @@ public class PacMan extends Personaje {
 								// sprite del
 								// pacman que se tiene que diburar en un
 								// instante determinado.
+	private int cont = 0;
+	private int inc = 35;
 
 	public PacMan(Laberinto l, String fichero) {
 		super(NombresPersonaje.PACMAN, l);
+		ds = new Point2D.Double(105, getDireccion().ordinal() * 35);
 		try {
 			img = ImageIO.read(PacMan.class.getResource(fichero));
 		} catch (IOException e) {
@@ -25,15 +28,22 @@ public class PacMan extends Personaje {
 	}
 
 	public Point2D.Double getCoordenadasSprite() {
-
-		return null;
+		return ds;
 	}
 
 	public void mover(double velocidad, Direccion nuevaDireccion) {
 		// El parámetro nuevaDirección representa la dirección que tiene que
 		// tomar si fuese posible.
-		super.mover(velocidad);
-		if (getDireccion() != nuevaDireccion && puedeCambiarDireccion(nuevaDireccion))
+		
+		if (super.mover(velocidad) && ++cont == 5) {
+			cont = 0;
+			ds.x += inc;
+			if (ds.x == 175 || ds.x == 0)
+				inc *= -1;
+		}
+		if (getDireccion() != nuevaDireccion && puedeCambiarDireccion(nuevaDireccion)) {
 			setDireccion(nuevaDireccion);
+			ds.y = getDireccion().ordinal() * 35;
+		}
 	}
 }
