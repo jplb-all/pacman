@@ -1,3 +1,7 @@
+import java.awt.geom.Point2D;
+
+import javax.swing.text.Position;
+
 
 public class CtrlJuego {
 	Fantasma blinky, inky, pinky, clyde;
@@ -22,6 +26,10 @@ public class CtrlJuego {
 	
 	public void cambiarDireccion (Direccion d){
 		this.d = d;
+	}
+	
+	public Point2D.Double getPosPacman (){
+		return pacman.getPosicion();
 	}
 	
 	public void inicioJuego(){
