@@ -20,7 +20,7 @@ public class CtrlJuego {
 //		inky = new Fantasma(NombresPersonaje.INKY, laberinto);
 //		pinky = new Fantasma(NombresPersonaje.PINKY, laberinto);
 //		clyde = new Fantasma(NombresPersonaje.CLYDE, laberinto);
-//		pacman = new PacMan(laberinto, "/img/comecocos.png");
+		pacman = new PacMan(laberinto, "/img/comecocos.png");
 		d = pacman.getDireccion();
 	}
 	
