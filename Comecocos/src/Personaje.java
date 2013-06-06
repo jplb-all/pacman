@@ -23,20 +23,20 @@ public abstract class Personaje {
 			Point2D.Double aux= new Point2D.Double(posicion.x, posicion.y);
 			
 			//comprueba si puede moverse en esa direccion
-			if ((direccion == Direccion.DERECHA) && (posicion.getX()%19 != 0 || !laberinto.muro(fil, colSgt)))
+			if ((direccion == Direccion.DERECHA) && ((int) posicion.x % 19 != 0 || !laberinto.muro(fil, colSgt)))
 				posicion.x += velocidad;
-			else if ((direccion == Direccion.IZDA) && (posicion.getX()%19 != 0 || !laberinto.muro(fil, colAnt)))
+			else if ((direccion == Direccion.IZDA) && ((int) posicion.x % 19 != 0 || !laberinto.muro(fil, colAnt)))
 				posicion.x -= velocidad;
-			else if ((direccion == Direccion.ABAJO) && (posicion.getY()%19 != 0 || !laberinto.muro(filSgt, col)))
+			else if ((direccion == Direccion.ABAJO) && ((int) posicion.y % 19 != 0 || !laberinto.muro(filSgt, col)))
 				posicion.y += velocidad;
-			else if ((direccion == Direccion.ARRIBA) && (posicion.getY()%19 != 0 || !laberinto.muro(filAnt, col)))
+			else if ((direccion == Direccion.ARRIBA) && ((int) posicion.y % 19 != 0 || !laberinto.muro(filAnt, col)))
 				posicion.y -= velocidad;
 			
 			//Comrueba si se ha movido y actualiza las posiciones
-			boolean seHaMovido = !posicion.equals(aux);
+			boolean seHaMovido = ((int) posicion.x != (int) aux.x || (int) posicion.y != (int) aux.y);
 			if(seHaMovido){
-				fil = (int) (posicion.getY()/19);
-				col = (int) (posicion.getX()/19);
+				fil = (int) (posicion.y / 19);
+				col = (int) (posicion.x / 19);
 				filAnt = fil-1;
 				filSgt = fil+1;
 				colAnt = col-1;
@@ -45,19 +45,15 @@ public abstract class Personaje {
 			return seHaMovido;
 		}
 		
-		public boolean muro(Direccion direccion){
-			
-			// muro==TRUE es que hay muro
-			if ((direccion == Direccion.DERECHA) && laberinto.muro(fil, colSgt))
-				return true;
-			if ((direccion == Direccion.IZDA) && laberinto.muro(fil, colAnt))
-				return true;
-			if ((direccion == Direccion.ARRIBA) && laberinto.muro(filAnt, col))
-				return true;
-			if ((direccion == Direccion.ABAJO) && laberinto.muro(filSgt, col))
-				return true;
-			
-			return false;
+		public boolean puedeCambiarDireccion(Direccion direccion){
+			// retorna true si en el proximo intento de moverse a esa dirección el personaje se va
+			// encontrar con un muro
+		return (int) posicion.x % 19 == 0
+				&& (int) posicion.y % 19 == 0
+				&& ((direccion == Direccion.DERECHA && !laberinto.muro(fil, colSgt))
+						|| (direccion == Direccion.IZDA && !laberinto.muro(fil, colAnt))
+						|| (direccion == Direccion.ARRIBA && !laberinto.muro(filAnt, col))
+						|| (direccion == Direccion.ABAJO && !laberinto.muro(filSgt, col)));
 		}
 		
 		public Direccion getDireccion(){
